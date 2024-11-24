@@ -43,3 +43,4 @@ def serve_allure_report():
 
 generate_allure_results()
 serve_allure_report()
+

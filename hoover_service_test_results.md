@@ -34,7 +34,7 @@ needs to be addressed for better clarity in the problem definition.
 # Test Results and Inconsistencies:
 
 
-A total of 26 test cases were executed, comprising both positive 
+A total of 46 test cases were executed, comprising both positive 
 and negative tests. Of these, 9 tests failed, including 6 
 positive tests and 3 negative tests. Further investigation is 
 required to determine the root causes of these failures. The Allure

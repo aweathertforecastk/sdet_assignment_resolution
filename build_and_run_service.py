@@ -1,5 +1,4 @@
 import subprocess
-import time
 
 
 commands = [
@@ -18,5 +17,4 @@ def execute_commands():
 
 
 execute_commands()
-time.sleep(10)
 

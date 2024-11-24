@@ -15,7 +15,7 @@
 
 
 # Building and running the service:
-- `python3 build_and_run_service.py`
+- `python3 build_and_run_service.py && sleep 10`
 
 
 # Run tests and view results:

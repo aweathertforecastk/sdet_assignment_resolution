@@ -2,11 +2,13 @@ import json
 import requests
 from behave import given, when, then
 
+
 def send_request(payload):
     url = "http://localhost:8080/v1/cleaning-sessions"
     headers = {"Content-Type": "application/json"}
     response = requests.post(url, json=payload, headers=headers)
     return response
+
 
 @given("the cleaning service is running")
 def step_impl(context):
@@ -15,12 +17,13 @@ def step_impl(context):
         requests.get(url)
     except requests.exceptions.RequestException as e:
         raise AssertionError(f"Error checking service status: {e}")
+
+
 @when("I send a request with the following data")
 def step_impl(context):
     if hasattr(context, "table") and context.table:
         data_rows = [row.as_dict() for row in context.table]
-        row = data_rows[0]  # We only work with one row of data per test scenario
-
+        row = data_rows[0]  
         try:
             payload = {
                 "roomSize": json.loads(row["room_size"]) if row["room_size"] else [],
@@ -77,13 +80,14 @@ def step_impl(context):
             elif actual_status == 400 or actual_status == 500:
                 if context.response.text.strip():
                     print(f"Error response: {context.response.text}")  # Log the error response
-                # No need to check for 'coords' or 'patches' for 400 or 500
                 print(f"Error response, status: {actual_status}")
             else:
                 print(f"Unexpected status code: {actual_status}. Response: {context.response.text}")
         else:
             raise AssertionError(f"Expected status code {expected_status}, but got {actual_status}")
 
+
 @then('the test is tagged as {test_tag}')
 def step_impl(context, test_tag):
     print(f"Test is tagged as {test_tag}.")
+

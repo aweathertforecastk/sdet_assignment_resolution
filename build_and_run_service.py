@@ -1,5 +1,5 @@
 import subprocess
-
+import time
 commands = [
     "sudo chmod +x service/run.sh",
     "sudo docker build -t pltsci-sdet-assignment service",
@@ -14,3 +14,4 @@ def execute_commands():
             print(f"Error: {e.stderr.decode()}")
 
 execute_commands()
+time.sleep(10)

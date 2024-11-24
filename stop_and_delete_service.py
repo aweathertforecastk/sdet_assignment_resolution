@@ -1,9 +1,11 @@
 import subprocess
 
+
 commands = [
     "sudo docker stop pltsci-sdet-assignment",
     "sudo docker rm pltsci-sdet-assignment"
 ]
+
 
 def execute_commands():
     for command in commands:
@@ -13,3 +15,4 @@ def execute_commands():
             print(f"Error: {e.stderr.decode()}")
 
 execute_commands()
+

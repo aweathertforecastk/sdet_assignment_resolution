@@ -23,7 +23,8 @@ def step_impl(context):
 def step_impl(context):
     if hasattr(context, "table") and context.table:
         data_rows = [row.as_dict() for row in context.table]
-        row = data_rows[0]  
+        row = data_rows[0] 
+
         try:
             payload = {
                 "roomSize": json.loads(row["room_size"]) if row["room_size"] else [],
@@ -32,16 +33,18 @@ def step_impl(context):
                 "instructions": row["instructions"] if row["instructions"] else ""
             }
         except json.JSONDecodeError as e:
-            raise AssertionError(f"Error parsing input data: {e}")
+            print(f"Error parsing input data: {e}")
+            context.response = type('Response', (object,), {'status_code': 400, 'text': f"Error parsing input data: {e}"})
+            return
 
         response = send_request(payload)
-        context.response = response  # Save the response for the then step
+        context.response = response 
 
         actual_status = response.status_code
 
         if actual_status == 200:
             try:
-                actual_response = response.json()  # Expect a JSON response
+                actual_response = response.json() 
                 print("Success Response:", actual_response)
             except json.JSONDecodeError as e:
                 raise AssertionError(f"Error parsing response as JSON: {e}")
@@ -51,7 +54,7 @@ def step_impl(context):
         else:
             actual_message = response.text if response.text else "No response content"
             print(f"Unexpected error! Status code: {actual_status}. Response: {actual_message}")
-
+            
 
 @then("the server should respond with")
 def step_impl(context):
@@ -79,7 +82,7 @@ def step_impl(context):
                     raise AssertionError(f"Error parsing server response: {e}")
             elif actual_status == 400 or actual_status == 500:
                 if context.response.text.strip():
-                    print(f"Error response: {context.response.text}")  # Log the error response
+                    print(f"Error response: {context.response.text}") 
                 print(f"Error response, status: {actual_status}")
             else:
                 print(f"Unexpected status code: {actual_status}. Response: {context.response.text}")

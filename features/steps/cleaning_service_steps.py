@@ -90,7 +90,7 @@ def validate_server_response(context):
             raise AssertionError(f"Expected status code {expected_status}, but got {actual_status}")
 
 
-@then('the test is tagged as {test_tag}')
+@then('the test is tagged as "{test_tag}"')
 def verify_test_tag(context, test_tag):
     print(f"Test is tagged as {test_tag}.")
 

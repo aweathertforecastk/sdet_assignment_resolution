@@ -1,6 +1,7 @@
 Feature: Cleaning service validation
   To ensure the cleaning service behaves correctly, various scenarios are tested with valid and invalid data.
-
+  
+  @<test_tag>
   Scenario Outline: Validate server response for cleaning service requests
     Given the cleaning service is running
     When I send a request with the following data
@@ -9,7 +10,7 @@ Feature: Cleaning service validation
     Then the server should respond with
       | expected_status | expected_coords | expected_patches |
       | <expected_status> | <expected_coords> | <expected_patches> |
-    And the test is tagged as <test_tag>
+    And the test is tagged as "<test_tag>"
 
 
   Examples:

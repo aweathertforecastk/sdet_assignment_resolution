@@ -11,7 +11,7 @@ def send_request(payload):
 
 
 @given("the cleaning service is running")
-def step_impl(context):
+def verify_service_running(context):
     url = "http://localhost:8080/health"
     try:
         requests.get(url)
@@ -20,7 +20,7 @@ def step_impl(context):
 
 
 @when("I send a request with the following data")
-def step_impl(context):
+def send_data_request(context):
     if hasattr(context, "table") and context.table:
         data_rows = [row.as_dict() for row in context.table]
         row = data_rows[0] 
@@ -57,7 +57,7 @@ def step_impl(context):
             
 
 @then("the server should respond with")
-def step_impl(context):
+def validate_server_response(context):
     if hasattr(context, "table") and context.table:
         expected_rows = [row.as_dict() for row in context.table]
         expected = expected_rows[0]
@@ -91,6 +91,6 @@ def step_impl(context):
 
 
 @then('the test is tagged as {test_tag}')
-def step_impl(context, test_tag):
+def verify_test_tag(context, test_tag):
     print(f"Test is tagged as {test_tag}.")
 

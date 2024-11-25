@@ -7,7 +7,13 @@
 # Download the repository at https://github.com/aweathertforecastk/sdet_assignment_resolution
 
 
-# From the root of this repository, run the following:
+# From the root of this repository, follow these steps:
+
+
+# Create and activate a virtual environment:
+ Ensure you have Python 3.6+ installed. Use the following commands to create and activate a virtual environment:
+- `python3 -m venv venv`
+- `source venv/bin/activate`
 
 
 # Install dependencies:
@@ -19,7 +25,14 @@
 
 
 # Run tests and view results:
+ Option 1: Run all tests and view results on the Allure web page:
 - `python3 run_tests_and_view_results.py`
+
+ Option 2: Run only positive test cases:
+- `behave features/cleaning_service.feature --tags=positive`
+
+ Option 3: Run only negative test cases:
+- `behave features/cleaning_service.feature --tags=negative`
 
 
 # Stop and remove the service:

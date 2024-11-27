@@ -2,12 +2,10 @@ import subprocess
 from features.config import CONTAINER_NAME
 
 
-
-
-# Commands to stop and remove the container
 commands = [
     f"sudo docker stop {CONTAINER_NAME}",
     f"sudo docker rm {CONTAINER_NAME}"]
+
 
 def stop_and_delete_service():
     for command in commands:

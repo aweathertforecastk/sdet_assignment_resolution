@@ -22,7 +22,7 @@
 
 
 # Building and running the service:
-- `python3 build_and_run_service.py && sleep 10`
+- `python3 service_management/build_and_run_service.py && sleep 10`
 
 
 # Run tests and view results:
@@ -37,4 +37,4 @@
 
 
 # Stop and remove the service:
-- `python3 stop_and_delete_service.py `
+- `python3 service_management/stop_and_delete_service.py `

@@ -3,8 +3,8 @@ from config import CONTAINER_NAME
 
 
 commands = [
-    f"sudo docker stop {CONTAINER_NAME}",
-    f"sudo docker rm {CONTAINER_NAME}"]
+    f"docker stop {CONTAINER_NAME}",
+    f"docker rm {CONTAINER_NAME}"]
 
 
 def stop_and_delete_service():

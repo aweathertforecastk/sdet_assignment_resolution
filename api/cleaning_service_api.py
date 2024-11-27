@@ -4,11 +4,24 @@ from service_management.config import BASE_URL
 
 
 class CleaningServiceAPI:
+    """
+    A class to interact with the cleaning service API, providing methods for sending requests,
+    parsing JSON data, and verifying the service status.
+
+    """
     def __init__(self, base_url=BASE_URL):
         self.base_url = base_url
 
 
     def send_request(self, payload):
+        """
+        Sends a cleaning session request to the API with the provided payload.
+
+        This method checks if the payload is valid. If invalid, a mock error response is returned.
+        Otherwise, it sends the request to the API endpoint and returns the response.
+
+        """
+
         if self.is_invalid_payload(payload):
             mock_response = {
                 "status_code": 400,
@@ -34,6 +47,14 @@ class CleaningServiceAPI:
 
 
     def is_invalid_payload(self, payload):
+        """
+        Validates the structure and content of the provided cleaning session payload.
+
+        Checks for the presence and correct format of essential fields: 'roomSize', 'coords', 'patches', 
+        and 'instructions'. 
+
+        """
+
         if not payload.get('roomSize') or len(payload['roomSize']) != 2:
             return True
         if not payload.get('coords') or len(payload['coords']) != 2:
@@ -46,6 +67,13 @@ class CleaningServiceAPI:
 
 
     def verify_service_is_running(self):
+        """
+        Sends a test request to check if the cleaning service API is up and running.
+
+        The method sends a sample cleaning session request and returns the response from the service.
+
+        """
+
         url = f"{self.base_url}/v1/cleaning-sessions"
         test_payload = {
             "roomSize": [5, 5],

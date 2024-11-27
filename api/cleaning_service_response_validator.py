@@ -1,4 +1,9 @@
 class ResponseValidator:
+    """
+    A class to validate the status code and response data of an HTTP response.
+    
+    """
+
     def __init__(self, response):
         if isinstance(response, dict) and 'status_code' in response:
             self.is_mock_response = True
@@ -9,6 +14,13 @@ class ResponseValidator:
 
 
     def validate_status_code(self, expected_status):
+        """
+        Validates that the HTTP response status code matches the expected status code.
+
+        This method checks the response's status code (from either a mock response or an actual response) 
+        and compares it with the expected status code. If they do not match, an assertion error is raised.
+
+        """
         if self.is_mock_response:
             status_code = self.response.get('status_code', 500)  
         else:
@@ -20,6 +32,13 @@ class ResponseValidator:
 
 
     def validate_response_data(self, expected_coords, expected_patches):
+        """
+        Validates the response data by checking if the 'coords' and 'patches' match the expected values.
+
+        This method is only executed if the response is not a mock response and the HTTP status code is 200. 
+        It checks that the 'coords' and 'patches' values in the response match the expected values.
+
+        """
         if self.is_mock_response:
             return
 

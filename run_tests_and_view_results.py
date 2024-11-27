@@ -5,6 +5,11 @@ import sys
 
 
 class AllureReportManager:
+    """
+    A class for automating the process of generating and serving Allure reports
+    from Behave test results.
+    
+    """
     def __init__(self, results_dir="allure-results", features_dir="./features"):
         self.results_dir = results_dir
         self.features_dir = features_dir

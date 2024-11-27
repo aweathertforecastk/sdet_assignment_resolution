@@ -62,7 +62,7 @@ Where `coords` are the final coordinates of the hoover and `patches` is the numb
 
 The test suite:
 
-* Is implemented using any BDD framework (e.g. Cucumber or [Codecept.js](https://codecept.io/bdd/#gherkin)
+* Is implemented using any BDD framework (e.g. Cucumber or [Codecept.js](https://codecept.io/bdd/#gherkin))
 * Must run on Mac OS X or Linux (x86-64) 
 * Can make use of any existing open source libraries that don't directly address the problem statement (use your best judgement).
 

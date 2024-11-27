@@ -4,8 +4,8 @@ from config import CONTAINER_NAME, IMAGE_NAME, SERVICE_PATH
 
 commands = [
     f"sudo chmod +x {SERVICE_PATH}/run.sh",
-    f"sudo docker build -t {IMAGE_NAME} {SERVICE_PATH}",
-    f"sudo docker run -d -p 8080:8080 --name {CONTAINER_NAME} {IMAGE_NAME}"
+    f"docker build -t {IMAGE_NAME} {SERVICE_PATH}",
+    f"docker run -d -p 8080:8080 --name {CONTAINER_NAME} {IMAGE_NAME}"
 ]
 
 

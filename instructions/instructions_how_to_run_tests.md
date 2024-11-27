@@ -19,6 +19,7 @@
 
 # Install dependencies:
 - `pip install -r requirements.txt`
+- `brew install allure`
 
 
 # Building and running the service:

@@ -1,5 +1,5 @@
 from behave import given, when, then
-from features.steps.cleaning_service_response_validator import ResponseValidator
+from api.cleaning_service_response_validator import ResponseValidator
 
 
 @given("the cleaning service is running")

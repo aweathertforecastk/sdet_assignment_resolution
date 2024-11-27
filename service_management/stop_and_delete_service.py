@@ -1,5 +1,5 @@
 import subprocess
-from features.config import CONTAINER_NAME
+from config import CONTAINER_NAME
 
 
 commands = [

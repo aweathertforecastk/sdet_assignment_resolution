@@ -48,5 +48,5 @@ Thumbs.db
 *.mov
 *.wmv
 
-# Python virtual environments
+# Python virtual environment
 venv/

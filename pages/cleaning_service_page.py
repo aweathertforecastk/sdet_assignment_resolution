@@ -1,4 +1,4 @@
-from features.steps.cleaning_service_api import CleaningServiceAPI
+from api.cleaning_service_api import CleaningServiceAPI
 
 
 class CleaningServicePage:

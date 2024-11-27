@@ -1,6 +1,6 @@
 import json
 import requests
-from config import BASE_URL
+from service_management.config import BASE_URL
 
 
 class CleaningServiceAPI:

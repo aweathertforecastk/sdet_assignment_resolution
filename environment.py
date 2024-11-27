@@ -1,4 +1,4 @@
-from features.steps.cleaning_service_page import CleaningServicePage
+from pages.cleaning_service_page import CleaningServicePage
 
 
 def before_scenario(context, scenario):

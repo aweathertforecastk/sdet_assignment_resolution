@@ -1,5 +1,5 @@
 import subprocess
-from features.config import CONTAINER_NAME, IMAGE_NAME, SERVICE_PATH
+from config import CONTAINER_NAME, IMAGE_NAME, SERVICE_PATH
 
 
 commands = [

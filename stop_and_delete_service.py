@@ -14,4 +14,5 @@ def stop_and_delete_service():
         except subprocess.CalledProcessError as e:
             print(f"Error: {e.stderr.decode()}")
 
+
 stop_and_delete_service()

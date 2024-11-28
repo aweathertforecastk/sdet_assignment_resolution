@@ -1,4 +1,5 @@
 from api.cleaning_service_api import CleaningServiceAPI
+from service_management.config import ROOM_SIZE, COORDS, PATCHES, INSTRUCTIONS
 
 
 class CleaningServicePage:
@@ -30,10 +31,10 @@ class CleaningServicePage:
 
         """
         return {
-            "roomSize": self.api.parse_json(data.get("roomSize")),
-            "coords": self.api.parse_json(data.get("coords")),
-            "patches": self.api.parse_json(data.get("patches")),
-            "instructions": data.get("instructions"),
+            ROOM_SIZE: self.api.parse_json(data.get(ROOM_SIZE)),
+            COORDS: self.api.parse_json(data.get(COORDS)),
+            PATCHES: self.api.parse_json(data.get(PATCHES)),
+            INSTRUCTIONS: data.get(INSTRUCTIONS),
         }
 
 

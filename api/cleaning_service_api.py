@@ -1,6 +1,6 @@
 import json
 import requests
-from service_management.config import BASE_URL
+from service_management.config import BASE_URL, ROOM_SIZE, COORDS, PATCHES, INSTRUCTIONS, STATUS_CODE
 
 
 class CleaningServiceAPI:
@@ -21,10 +21,9 @@ class CleaningServiceAPI:
         Otherwise, it sends the request to the API endpoint and returns the response.
 
         """
-
         if self.is_invalid_payload(payload):
             mock_response = {
-                "status_code": 400,
+                STATUS_CODE: 400,
                 "error": "Bad Request",
                 "message": "Missing or invalid data"
             }
@@ -36,32 +35,60 @@ class CleaningServiceAPI:
 
 
     def parse_json(self, data):
-        if not data:
-            return []
-        if isinstance(data, (list, dict)):
+        """
+    Attempts to parse the provided data into a list or dictionary. If the data is a valid JSON string, 
+    it is parsed and returned as the appropriate Python data type (list or dict). 
+
+    If the data is already a list or dictionary, it is returned as is. If the data cannot be parsed 
+    as JSON, appropriate error responses are returned indicating the failure.
+
+        """
+    
+        if isinstance(data, (list, dict)): 
             return data
+
         try:
             return json.loads(data)
-        except json.JSONDecodeError:
-            return []
-
+        except json.JSONDecodeError as e:
+            return {
+                STATUS_CODE: 400,
+                "error": "Bad Request",
+                "message": "Invalid JSON format",
+                "details": str(e)
+            }
+        except (TypeError, NameError) as e:
+            return {
+                STATUS_CODE: 400,
+                "error": "Bad Request",
+                "message": "Invalid data type or name error",
+                "details": str(e)
+            }
+      
 
     def is_invalid_payload(self, payload):
         """
-        Validates the structure and content of the provided cleaning session payload.
+         
+    Validates the structure and content of the provided cleaning session payload.
 
-        Checks for the presence and correct format of essential fields: 'roomSize', 'coords', 'patches', 
-        and 'instructions'. 
+    This function checks if the essential fields ('roomSize', 'coords', 'patches', and 'instructions') 
+    in the payload are present and correctly formatted. It returns 'True' if any field is missing, 
+    incorrectly formatted, or invalid. Otherwise, it returns 'False'.
 
         """
 
-        if not payload.get('roomSize') or len(payload['roomSize']) != 2:
+        if payload.get(ROOM_SIZE) is None or len(payload[ROOM_SIZE]) != 2 or payload.get(ROOM_SIZE) == [0, 0]:
             return True
-        if not payload.get('coords') or len(payload['coords']) != 2:
+        if payload.get(COORDS) is None or len(payload[COORDS]) != 2:
             return True
-        if not isinstance(payload.get('patches', []), list):
+        if not isinstance(payload.get(PATCHES, []), list):
             return True
-        if not payload.get('instructions') or not isinstance(payload['instructions'], str):
+        instructions = payload.get(INSTRUCTIONS, "")
+        valid_instructions = {"E", "W", "N", "S"}
+    
+        if not instructions or not isinstance(instructions, str):
+            return True
+    
+        if any(char not in valid_instructions for char in instructions):
             return True
         return False
 
@@ -76,9 +103,9 @@ class CleaningServiceAPI:
 
         url = f"{self.base_url}/v1/cleaning-sessions"
         test_payload = {
-            "roomSize": [5, 5],
-            "coords": [1, 2],
-            "patches": [[1, 0], [2, 2], [2, 3]],
-            "instructions": "NNESEESWNWW"
+            ROOM_SIZE: [5, 5],
+            COORDS: [1, 2],
+            PATCHES: [[1, 0], [2, 2], [2, 3]],
+            INSTRUCTIONS: "NNESEESWNWW"
         }
         return self.send_request(test_payload)

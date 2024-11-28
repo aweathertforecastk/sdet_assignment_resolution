@@ -23,7 +23,7 @@
 
 
 # Building and running the service:
-- `python3 service_management/build_and_run_service.py && sleep 30`
+- `python3 service_management/build_and_run_service.py && sleep 20`
 
 
 # Run tests and view results:

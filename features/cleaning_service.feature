@@ -56,7 +56,6 @@ Feature: Cleaning service validation
     | Verify hoover cannot operate if empty room size              | []          | [5, 6]    | [[1, 1], [3, 1]]                                        | SW                                 | 400             | []              | 0                |
     | Verify hoover cannot operate if missing room size            |             | [0, 0]    | []                                                      | NNEE                               | 400             | []              | 0                |
     | Verify hoover cannot operate in a zero-sized room            | [0, 0]      | [0, 0]    | []                                                      | N                                  | 400             | []              | 0                |
-    | Verify the service rejects non-rectangular room dimensions   | [5, 5]      | [2, 3]    | []                                                      | WWS                                | 400             | []              | 0                |
     | Verify inappropriate character (letter) in room_size X       | ["A", 12]   | [5, 12]   | [[4,9]]                                                 | SS                                 | 400             | []              | 0                |
     | Verify inappropriate character (letter) in room_size Y       | [10, "b"]   | [0, 0]    | []                                                      | NNEEES                             | 400             | []              | 0                |
     | Verify inappropriate character (letter) in coords X          | [2, 1]      | ["C", 0]  | []                                                      | NE                                 | 400             | []              | 0                |
@@ -77,4 +76,6 @@ Feature: Cleaning service validation
     | Verify invalid input: missing parameter in patches X         | [14, 23]    | [7, 11]   | [[, 3]]                                                 | EWSW                               | 400             | []              | 0                |
     | Verify invalid input: missing parameter in patches Y         | [14, 23]    | [7, 11]   | [[5, ]]                                                 | EWSW                               | 400             | []              | 0                |
     | Verify input validation for integer in instructions          | [14, 23]    | [7, 11]   | [[5, 7]]                                                | EW5SW                              | 400             | []              | 0                |
+
+
 

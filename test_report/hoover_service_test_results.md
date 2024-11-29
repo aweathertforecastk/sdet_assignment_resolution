@@ -35,7 +35,7 @@ needs to be addressed for better clarity in the problem definition.
 
 
 A total of 56 test cases were executed, comprising both positive 
-and negative tests. Of these, 15 tests failed, including 6 
+and negative tests. Of these, 20 tests failed, including 6 
 positive tests and 14 negative tests. Further investigation is 
 required to determine the root causes of these failures. The Allure
 web page auto-generated after the tests provides additional details, 
